@@ -1,3 +1,5 @@
+/** @type {import('tailwindcss').Config} */
+const colors = require('tailwindcss/colors')
 const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
@@ -5,7 +7,8 @@ module.exports = {
     './public/*.html',
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
-    './app/views/**/*.{erb,haml,html,slim}'
+    './app/javascript/components/**/*.js',
+    './app/views/**/*.{html,html.erb,erb}'
   ],
   theme: {
     extend: {
@@ -18,5 +21,7 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/container-queries'),
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/line-clamp'),
   ]
 }
