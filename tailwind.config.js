@@ -9,6 +9,9 @@ module.exports = {
     './app/views/**/*.{html,html.erb,erb}',
     './app/javascript/components/**/*.js',
   ],
+  daisyui: {
+    themes: ["nord"],
+  },
   theme: {
     fontFamily: {
       'sans': ["BlinkMacSystemFont", "Avenir Next", "Avenir",
@@ -26,5 +29,6 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
     require('@tailwindcss/aspect-ratio'),
+    require('daisyui'),
   ],
 }
