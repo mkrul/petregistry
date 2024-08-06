@@ -14,16 +14,17 @@
     <script src="/vite-dev/assets/application-cda856d1.js" crossorigin="anonymous" type="module"></script>
   </head>
 
-  <body data-theme="nord">
+  <body data-theme="h-full nord">
     <%= render "shared/nav" %>
 
-    <main class="container mx-auto mt-28 px-5 flex">
-      <% if notice %>
+    <div class="container mx-auto mt-10 px-5 flex justify-center pb-6">
+      <% if flash[:notice] %>
         <%= render "shared/notice", notice: notice %>
-      <% elsif alert %>
+      <% end %>
+      <% if flash[:error] || flash[:alert] %>
         <%= render "shared/alert", alert: alert %>
       <% end %>
-    </main>
+    </div>
 
     <%= yield %>
   </body>
