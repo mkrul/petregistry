@@ -5,16 +5,16 @@
   <div class="flex-none">
     <ul class="menu menu-horizontal px-1">
       <li>
-        <a>Post</a>
+        <%= link_to "Post", new_listing_path, class: "text-base" %>
       </li>
       <li>
-        <details>
-          <summary>Search</summary>
-          <ul class="bg-base-100 rounded-t-none p-2">
-            <li><a>Link 1</a></li>
-            <li><a>Link 2</a></li>
-          </ul>
-        </details>
+        <a class="text-base">Search</a>
+      </li>
+      <li>
+        <a class="text-base">About</a>
+      </li>
+      <li>
+        <a class="text-base">Contact</a>
       </li>
     </ul>
   </div>
@@ -30,14 +30,16 @@
       <ul
         tabindex="0"
         class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+        <li><a class="text-base">Listings</a></li>
+        <li><a class="text-base">Pets</a></li>
         <li>
-          <a class="justify-between">
+          <a class="justify-between text-base">
             Profile
             <span class="badge">New</span>
           </a>
         </li>
-        <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
+        <li><a class="text-base">Settings</a></li>
+        <li><a class="text-base">Logout</a></li>
       </ul>
     </div>
   </div>
