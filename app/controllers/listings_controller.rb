@@ -65,6 +65,6 @@ class ListingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def listing_params
-      params.fetch(:listing, {}).permit(:title, :status, :archived_at)
+      params.fetch(:listing, {}).permit(:title, :status, :description, :species, :breed_1, :breed_2, :color_1, :color_2, :color_3)
     end
 end
