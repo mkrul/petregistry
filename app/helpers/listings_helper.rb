@@ -1,5 +1,6 @@
 module ListingsHelper
-  DOG_BREEDS = %w[Poodle Labrador Bulldog Pug Chihuahua].freeze
-  COLORS = %w[Black White Brown Grey Merle Brindle Spotted Calico].freeze
-  SPECIES = %w[Dog Cat].freeze
+  DOG_BREEDS = %w(poodle labrador bulldog pug chihuahua).freeze
+  COLORS = %w(black white brown gray tan).freeze
+  SPECIES = %w(dog cat).freeze
+  GENDER = %w(male female unknown).freeze
 end
