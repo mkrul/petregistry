@@ -23,13 +23,6 @@ class ListingsController < ApplicationController
   def create
     @listing = Listing.new(listing_params)
 
-    pry
-
-    if params[:listing][:image].present?
-      upload_result = Cloudinary::Uploader.upload(params[:listing][:image].path, folder: "petregistry")
-      @listing.image_url = upload_result["secure_url"]
-    end
-
     respond_to do |format|
       if @listing.save
         format.html { redirect_to listing_url(@listing), notice: "Listing was successfully created." }
@@ -84,7 +77,7 @@ class ListingsController < ApplicationController
         :color_1,
         :color_2,
         :color_3,
-        :image
+        images: []
       )
     end
 end

@@ -6,5 +6,5 @@ class Listing < ApplicationRecord
   validates :species, presence: true, inclusion: { in: %w[dog cat] }
   validates :gender, presence: true, inclusion: { in: %w[male female unknown] }
 
-  mount_uploader :image, ImageUploader
+  has_many_attached :images, service: :cloudinary
 end

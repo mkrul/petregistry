@@ -12,13 +12,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   storage :file
   # storage :fog
 
-  version :thumbnail do
-    resize_to_fit(100, 100)
-  end
-
-  version :medium do
-    resize_to_fit(300, 300)
-  end
+  # version :medium do
+  #   resize_to_fit(300, 300)
+  # end
 
 
   # Override the directory where uploaded files will be stored.
