@@ -23,6 +23,13 @@ class ListingsController < ApplicationController
   def create
     @listing = Listing.new(listing_params)
 
+    pry
+
+    if params[:listing][:image].present?
+      upload_result = Cloudinary::Uploader.upload(params[:listing][:image].path, folder: "petregistry")
+      @listing.image_url = upload_result["secure_url"]
+    end
+
     respond_to do |format|
       if @listing.save
         format.html { redirect_to listing_url(@listing), notice: "Listing was successfully created." }
@@ -65,6 +72,19 @@ class ListingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def listing_params
-      params.fetch(:listing, {}).permit(:title, :status, :description, :species, :breed_1, :breed_2, :color_1, :color_2, :color_3)
+      params.fetch(:listing, {}).permit(
+        :title,
+        :status,
+        :name,
+        :description,
+        :gender,
+        :species,
+        :breed_1,
+        :breed_2,
+        :color_1,
+        :color_2,
+        :color_3,
+        :image
+      )
     end
 end

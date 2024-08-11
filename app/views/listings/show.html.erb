@@ -63,6 +63,13 @@
         <p class="text-gray-700">Last updated: <%= @listing.updated_at.strftime("%B %d, %Y, %H:%M %p") %>
       <% end %>
     </div>
+
+    <!-- Image -->
+    <div class="mt-6">
+      <% if @listing.image.present? %>
+        <%= image_tag @listing.image.url, class: "w-64 h-64 object-cover rounded-lg shadow-lg" %>
+      <% end %>
+    </div>
   </div>
 
   <div class="mt-6">
