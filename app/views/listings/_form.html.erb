@@ -13,7 +13,7 @@
   <% end %>
 
   <div>
-    Please provide as much detail about the animal as possible, and upload at least one image (up to 3 images can be added).
+    Please provide as much detail as possible and upload a photo of the animal.
   </div>
 
   <div class="text-sm text-gray-500 mb-3">
@@ -99,6 +99,7 @@
   <div class="flex">
     <div>
       <div class="mb-2">
+        <%= form.file_field :image, multiple: true, class: "cloudinary-fileupload", data: { cloudinary_field: "image_id" } %>
         <button type="button" id="upload_widget" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
           Upload Images
         </button>
@@ -118,11 +119,10 @@
 <% end %>
 
 <script type="text/javascript">
+  // ---------------------------------------- //
+  // ------- CLOUDINARY UPLOAD WIDGET ------- //
+  // ---------------------------------------- //
   document.addEventListener("DOMContentLoaded", function() {
-
-    // ---------------------------------------- //
-    // ------- CLOUDINARY UPLOAD WIDGET ------- //
-    // ---------------------------------------- //
     const uploadWidgetButton = document.getElementById('upload_widget');
     const cloudinaryUrlsField = document.getElementById('cloudinary-urls');
 
@@ -155,10 +155,13 @@
     $('.cloudinary-fileupload').bind('fileuploadprogress', function(e, data) {
       $('.progress_bar').css('width', Math.round((data.loaded * 100.0) / data.total) + '%');
     });
+  });
 
-    // ---------------------------------------- //
-    // -------- BREED & COLOR DROPDOWNS ------- //
-    // ---------------------------------------- //
+
+  // ---------------------------------------- //
+  // -------- BREED & COLOR DROPDOWNS ------- //
+  // ---------------------------------------- //
+  document.addEventListener("DOMContentLoaded", function() {
     const breed1 = document.getElementById("breed-1");
     const breed2 = document.getElementById("breed-2");
     const color1 = document.getElementById("color-1");

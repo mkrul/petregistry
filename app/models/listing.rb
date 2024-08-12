@@ -5,6 +5,20 @@ class Listing < ApplicationRecord
   validates :breed_1, presence: true
   validates :species, presence: true, inclusion: { in: %w[dog cat] }
   validates :gender, presence: true, inclusion: { in: %w[male female unknown] }
+  normalizes :title,
+             :description,
+             :status,
+             :archived_at,
+             :name,
+             :species,
+             :breed_1,
+             :breed_2,
+             :color_1,
+             :color_2,
+             :color_3,
+             :gender,
+             :image,
+             with: -> { _1.presence }
 
   has_many_attached :images, service: :cloudinary
 end
