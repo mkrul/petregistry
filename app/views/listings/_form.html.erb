@@ -1,4 +1,6 @@
 <script src="https://upload-widget.cloudinary.com/latest/global/all.js" type="text/javascript"></script>
+<%= javascript_include_tag "common/cloudinary_widget" %>
+<%= javascript_include_tag "listings/dropdowns"%>
 
 <%= form_with(model: listing, local: true, multipart: true, class: "space-y-6") do |form| %>
   <% if listing.errors.any? %>
@@ -118,81 +120,3 @@
   </div>
 <% end %>
 
-<script type="text/javascript">
-  // ---------------------------------------- //
-  // ------- CLOUDINARY UPLOAD WIDGET ------- //
-  // ---------------------------------------- //
-  document.addEventListener("DOMContentLoaded", function() {
-    const uploadWidgetButton = document.getElementById('upload_widget');
-    const cloudinaryUrlsField = document.getElementById('cloudinary-urls');
-
-    uploadWidgetButton.addEventListener('click', function() {
-      cloudinary.openUploadWidget({
-        cloud_name: 'dtyadd1w5',
-        upload_preset: 'pr_unsigned',
-        multiple: true,
-        sources: ['local', 'url', 'camera'],
-        folder: 'petregistry', // Optional: Folder to store images
-      }, (error, result) => {
-        if (!error && result && result.event === "success") {
-          const urls = result.info.secure_url;
-          let currentUrls = cloudinaryUrlsField.value;
-          cloudinaryUrlsField.value = currentUrls ? currentUrls + ',' + urls : urls;
-        }
-      });
-    });
-
-    $('.cloudinary-fileupload').bind('cloudinarydone', function(e, data) {
-      $('.preview').html(
-        $.cloudinary.image(data.result.public_id,
-          { format: data.result.format, version: data.result.version,
-            crop: 'fill', width: 150, height: 100 })
-      );
-      $('.image_public_id').val(data.result.public_id);
-      return true;
-    });
-
-    $('.cloudinary-fileupload').bind('fileuploadprogress', function(e, data) {
-      $('.progress_bar').css('width', Math.round((data.loaded * 100.0) / data.total) + '%');
-    });
-  });
-
-
-  // ---------------------------------------- //
-  // -------- BREED & COLOR DROPDOWNS ------- //
-  // ---------------------------------------- //
-  document.addEventListener("DOMContentLoaded", function() {
-    const breed1 = document.getElementById("breed-1");
-    const breed2 = document.getElementById("breed-2");
-    const color1 = document.getElementById("color-1");
-    const color2 = document.getElementById("color-2");
-    const color3 = document.getElementById("color-3");
-
-    breed1.addEventListener("change", function() {
-      if (breed1.value !== "Choose one") {
-        breed2.classList.remove("hidden");
-      } else {
-        breed2.classList.add("hidden");
-        breed2.value = null;
-      }
-    });
-
-    color1.addEventListener("change", function() {
-      if (color1.value !== "Choose one") {
-        color2.classList.remove("hidden");
-      } else {
-        color2.classList.add("hidden");
-        color2.value = null;
-      }
-    });
-
-    color2.addEventListener("change", function() {
-      if (color2.value !== "Choose one") {
-        color3.classList.remove("hidden");
-      } else {
-        color3.classList.add("hidden");
-        color3.value = null;
-      }
-    });
-  });
-</script>
