@@ -1,4 +1,4 @@
-class Listing < ApplicationRecord
+class Report < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
   validates :status, presence: true, inclusion: { in: %w[active archived] }
@@ -17,7 +17,6 @@ class Listing < ApplicationRecord
              :color_2,
              :color_3,
              :gender,
-             :image,
              with: -> { _1.presence }
 
   has_many_attached :images, service: :cloudinary

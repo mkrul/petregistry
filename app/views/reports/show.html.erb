@@ -1,9 +1,9 @@
 <div class="container mx-auto p-4">
-  <% if @listing.errors.any? %>
+  <% if @report.errors.any? %>
     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
-      <strong class="font-bold"><%= pluralize(listing.errors.count, "error") %> prohibited this listing from being saved:</strong>
+      <strong class="font-bold"><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</strong>
       <ul class="mt-2 list-disc list-inside">
-        <% @listing.errors.each do |error| %>
+        <% @report.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -11,41 +11,42 @@
   <% end %>
   <div class="p-6 bg-white rounded-lg shadow-lg">
     <!-- Title -->
-    <h2 class="text-2xl font-semibold mb-4 text-blue-600"><%= @listing.title %></h2>
+    <h2 class="text-2xl font-semibold mb-4 text-blue-600"><%= @report.title %></h2>
 
     <!-- Image -->
-    <% if @listing.images.any? &:attached? %>
+    <% if @report.images.any? &:attached? %>
+      <% pry %>
       <div class="mt-6 mb-4">
-        <% @listing.images.each do |image| %>
+        <% @report.images.each do |image| %>
           <%= image_tag image.url, class: "w-64 h-64 object-cover rounded-lg shadow-lg" %>
         <% end %>
       </div>
     <% end %>
 
     <!-- Name -->
-    <% if @listing.name.present? %>
+    <% if @report.name.present? %>
       <div class="mb-4">
         <h3 class="text-lg font-semibold text-gray-800">Name:</h3>
-        <p class="text-gray-700"><%= @listing.name %></p>
+        <p class="text-gray-700"><%= @report.name %></p>
       </div>
     <% end %>
 
     <!-- Description -->
     <div class="mb-4">
       <h3 class="text-lg font-semibold text-gray-800">Description:</h3>
-      <p class="text-gray-700"><%= @listing.description %></p>
+      <p class="text-gray-700"><%= @report.description %></p>
     </div>
 
     <!-- Species -->
     <div class="mb-4">
       <h3 class="text-lg font-semibold text-gray-800">Species:</h3>
-      <p class="text-gray-700"><%= @listing.species %></p>
+      <p class="text-gray-700"><%= @report.species %></p>
     </div>
 
     <!-- Breed 1 and Breed 2 -->
     <div class="mb-4">
       <h3 class="text-lg font-semibold text-gray-800">Breed:</h3>
-      <% [@listing.breed_1, @listing.breed_2].uniq.each do |breed| %>
+      <% [@report.breed_1, @report.breed_2].uniq.each do |breed| %>
         <p class="text-gray-700"><%= breed %></p>
       <% end %>
     </div>
@@ -53,31 +54,31 @@
     <!-- Colors -->
     <div class="mb-4">
       <h3 class="text-lg font-semibold text-gray-800">Colors:</h3>
-      <% [@listing.color_1, @listing.color_2, @listing.color_3].uniq.each do |color| %>
+      <% [@report.color_1, @report.color_2, @report.color_3].uniq.each do |color| %>
         <p class="text-gray-700"><%= color %></p>
       <% end %>
     </div>
 
     <!-- Archived Date -->
-    <% if @listing.archived_at.present? %>
+    <% if @report.archived_at.present? %>
       <div class="mb-4">
         <h3 class="text-lg font-semibold text-gray-800">Archived At:</h3>
-        <p class="text-gray-700"><%= @listing.archived_at.strftime("%B %d, %Y") %></p>
+        <p class="text-gray-700"><%= @report.archived_at.strftime("%B %d, %Y") %></p>
       </div>
     <% end %>
 
     <!-- Created and Updated Dates -->
     <div class="mt-6">
       <h3 class="text-lg font-semibold text-gray-800">Timestamps:</h3>
-      <p class="text-gray-700">Created at: <%= @listing.created_at.strftime("%B %d, %Y, %H:%M %p") %>
-      <% if @listing.created_at != @listing.updated_at %>
-        <p class="text-gray-700">Last updated: <%= @listing.updated_at.strftime("%B %d, %Y, %H:%M %p") %>
+      <p class="text-gray-700">Created at: <%= @report.created_at.strftime("%B %d, %Y, %H:%M %p") %>
+      <% if @report.created_at != @report.updated_at %>
+        <p class="text-gray-700">Last updated: <%= @report.updated_at.strftime("%B %d, %Y, %H:%M %p") %>
       <% end %>
     </div>
   </div>
 
   <div class="mt-6">
-    <%= link_to "Edit Listing", edit_listing_path(@listing), class: "inline-block px-4 py-2 bg-yellow-500 text-white font-semibold rounded hover:bg-yellow-600" %>
-    <%= link_to "Back to Listings", listings_path, class: "inline-block ml-4 px-4 py-2 bg-gray-500 text-white font-semibold rounded hover:bg-gray-600" %>
+    <%= link_to "Edit Report", edit_report_path(@report), class: "inline-block px-4 py-2 bg-yellow-500 text-white font-semibold rounded hover:bg-yellow-600" %>
+    <%= link_to "Back to Reports", reports_path, class: "inline-block ml-4 px-4 py-2 bg-gray-500 text-white font-semibold rounded hover:bg-gray-600" %>
   </div>
 </div>

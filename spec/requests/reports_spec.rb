@@ -12,10 +12,10 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/listings", type: :request do
-  
+RSpec.describe "/reports", type: :request do
+
   # This should return the minimal set of attributes required to create a valid
-  # Listing. As you add validations to Listing, be sure to
+  # Report. As you add validations to Report, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -27,62 +27,62 @@ RSpec.describe "/listings", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      Listing.create! valid_attributes
-      get listings_url
+      Report.create! valid_attributes
+      get reports_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      listing = Listing.create! valid_attributes
-      get listing_url(listing)
+      report = Report.create! valid_attributes
+      get report_url(report)
       expect(response).to be_successful
     end
   end
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new_listing_url
+      get new_report_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /edit" do
     it "renders a successful response" do
-      listing = Listing.create! valid_attributes
-      get edit_listing_url(listing)
+      report = Report.create! valid_attributes
+      get edit_report_url(report)
       expect(response).to be_successful
     end
   end
 
   describe "POST /create" do
     context "with valid parameters" do
-      it "creates a new Listing" do
+      it "creates a new Report" do
         expect {
-          post listings_url, params: { listing: valid_attributes }
-        }.to change(Listing, :count).by(1)
+          post reports_url, params: { report: valid_attributes }
+        }.to change(Report, :count).by(1)
       end
 
-      it "redirects to the created listing" do
-        post listings_url, params: { listing: valid_attributes }
-        expect(response).to redirect_to(listing_url(Listing.last))
+      it "redirects to the created report" do
+        post reports_url, params: { report: valid_attributes }
+        expect(response).to redirect_to(report_url(Report.last))
       end
     end
 
     context "with invalid parameters" do
-      it "does not create a new Listing" do
+      it "does not create a new Report" do
         expect {
-          post listings_url, params: { listing: invalid_attributes }
-        }.to change(Listing, :count).by(0)
+          post reports_url, params: { report: invalid_attributes }
+        }.to change(Report, :count).by(0)
       end
 
-    
+
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post listings_url, params: { listing: invalid_attributes }
+        post reports_url, params: { report: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    
+
     end
   end
 
@@ -92,44 +92,44 @@ RSpec.describe "/listings", type: :request do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested listing" do
-        listing = Listing.create! valid_attributes
-        patch listing_url(listing), params: { listing: new_attributes }
-        listing.reload
+      it "updates the requested report" do
+        report = Report.create! valid_attributes
+        patch report_url(report), params: { report: new_attributes }
+        report.reload
         skip("Add assertions for updated state")
       end
 
-      it "redirects to the listing" do
-        listing = Listing.create! valid_attributes
-        patch listing_url(listing), params: { listing: new_attributes }
-        listing.reload
-        expect(response).to redirect_to(listing_url(listing))
+      it "redirects to the report" do
+        report = Report.create! valid_attributes
+        patch report_url(report), params: { report: new_attributes }
+        report.reload
+        expect(response).to redirect_to(report_url(report))
       end
     end
 
     context "with invalid parameters" do
-    
+
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        listing = Listing.create! valid_attributes
-        patch listing_url(listing), params: { listing: invalid_attributes }
+        report = Report.create! valid_attributes
+        patch report_url(report), params: { report: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    
+
     end
   end
 
   describe "DELETE /destroy" do
-    it "destroys the requested listing" do
-      listing = Listing.create! valid_attributes
+    it "destroys the requested report" do
+      report = Report.create! valid_attributes
       expect {
-        delete listing_url(listing)
-      }.to change(Listing, :count).by(-1)
+        delete report_url(report)
+      }.to change(Report, :count).by(-1)
     end
 
-    it "redirects to the listings list" do
-      listing = Listing.create! valid_attributes
-      delete listing_url(listing)
-      expect(response).to redirect_to(listings_url)
+    it "redirects to the reports list" do
+      report = Report.create! valid_attributes
+      delete report_url(report)
+      expect(response).to redirect_to(reports_url)
     end
   end
 end

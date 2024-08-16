@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "listings/show", type: :view do
+RSpec.describe "reports/show", type: :view do
   before(:each) do
-    assign(:listing, Listing.create!())
+    assign(:report, Report.create!())
   end
 
   it "renders attributes in <p>" do
