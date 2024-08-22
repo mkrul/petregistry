@@ -1,0 +1,125 @@
+<script src="https://upload-widget.cloudinary.com/latest/global/all.js" type="text/javascript"></script>
+<%= javascript_include_tag "common/cloudinary_widget" %>
+<%= javascript_include_tag "reports/dropdowns"%>
+
+<%= form_with(model: report, local: true, multipart: true, class: "space-y-6") do |form| %>
+  <% if report.errors.any? %>
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+      <strong class="font-bold"><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</strong>
+      <ul class="mt-2 list-disc list-inside">
+        <% report.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    Please provide as much detail as possible and upload a photo of the animal.
+  </div>
+  <div class="text-sm text-gray-500 mb-3">
+    <p>Fields marked with <span class="text-red-400">*</span> are required.</p>
+  </div>
+
+  <div>
+    <div class="flex">
+      <%= form.label :title, class: "block text-sm font-medium text-gray-700" %>
+      <span class="ml-1 text-red-400">*</span>
+    </div>
+    <%= form.text_field :title, required: true, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+  </div>
+
+  <div>
+    <div class="flex">
+      <%= form.label :description, class: "block text-sm font-medium text-gray-700" %>
+      <span class="ml-1 text-red-400">*</span>
+    </div>
+    <%= form.text_area :description, required: true, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+  </div>
+
+  <div>
+    <div class="flex">
+      <%= form.label "Pet's name", class: "block text-sm font-medium text-gray-700" %>
+    </div>
+    <%= form.text_field :name, required: false, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+  </div>
+
+  <div>
+    <div class="flex">
+      <%= form.label :gender, class: "block text-sm font-medium text-gray-700" %>
+      <span class="ml-1 text-red-400">*</span>
+    </div>
+    <%= form.select :gender, options_for_select(ReportsHelper::GENDER), { prompt: "Choose one" }, required: true, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+  </div>
+
+  <div>
+    <div class="flex">
+      <%= form.label :species, class: "block text-sm font-medium text-gray-700" %>
+      <span class="ml-1 text-red-400">*</span>
+    </div>
+    <%= form.select :species, options_for_select(ReportsHelper::SPECIES), { prompt: "Choose one" }, required: true, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+  </div>
+
+  <div>
+    <div class="flex">
+      <%= form.label :breed_1, class: "block text-sm font-medium text-gray-700" %>
+      <span class="ml-1 text-red-400">*</span>
+    </div>
+    <%= form.select :breed_1, options_for_select(ReportsHelper::DOG_BREEDS), { prompt: "Choose one" }, id: "breed-1", required: true, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+  </div>
+
+  <div id="breed-2" class="hidden">
+    <div class="flex">
+      <%= form.label :breed_2, class: "block text-sm font-medium text-gray-700" %>
+    </div>
+    <%= form.select :breed_2, options_for_select(ReportsHelper::DOG_BREEDS), { prompt: "Choose one" }, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+  </div>
+
+  <div>
+    <div class="flex">
+      <%= form.label :color_1, class: "block text-sm font-medium text-gray-700" %>
+      <span class="ml-1 text-red-400">*</span>
+    </div>
+    <%= form.select :color_1, options_for_select(ReportsHelper::COLORS), { prompt: "Choose one"}, id: "color-1", required: true, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+  </div>
+
+  <div id="color-2" class="hidden">
+    <div class="flex">
+      <%= form.label :color_2, class: "block text-sm font-medium text-gray-700" %>
+    </div>
+    <%= form.select :color_2, options_for_select(ReportsHelper::COLORS), { prompt: "Choose one"}, id: "color-2", class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+  </div>
+
+  <div id="color-3" class="hidden">
+    <div class="flex">
+      <%= form.label :color_3, class: "block text-sm font-medium text-gray-700" %>
+    </div>
+    <%= form.select :color_3, options_for_select(ReportsHelper::COLORS), { prompt: "Choose one"}, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+  </div>
+
+  <div class="flex">
+    <div>
+      <div class="mb-2">
+        <button id="upload_widget" type="button" class="cloudinary-upload inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+          Upload Images
+        </button>
+        <%= form.hidden_field :image, id: "image_field" %>
+        <div id="upload_progress" style="display:none;">
+          <progress id="progress_bar" value="0" max="100"></progress>
+        </div>
+        <div id="image_preview"></div>
+      </div>
+
+      <%= form.hidden_field :cloudinary_urls, id: "cloudinary-urls" %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.hidden_field :status, value: "active" %>
+  </div>
+
+  <div>
+    <%= form.submit "Submit", class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" %>
+  </div>
+<% end %>
+

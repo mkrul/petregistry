@@ -1,14 +1,14 @@
 <div class="navbar bg-base-100">
   <div class="flex-1">
-    <%= link_to "Lost Pet Registry", root_path, class: "btn btn-ghost text-xl" %>
+    <%= link_to "National Lost Pet Registry", root_path, class: "btn btn-ghost text-xl" %>
   </div>
   <div class="flex-none">
     <ul class="menu menu-horizontal px-1">
       <li>
-        <%= link_to "Report a Lost Pet", new_listing_path, class: "text-base" %>
+        <%= link_to "Report a Lost Pet", new_report_path, class: "text-base" %>
       </li>
       <li>
-        <a class="text-base">Search</a>
+        <%= link_to "Search", reports_path, class: "text-base" %>
       </li>
       <li>
         <a class="text-base">About</a>
@@ -30,8 +30,8 @@
       <ul
         tabindex="0"
         class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-        <li><a class="text-base">Listings</a></li>
-        <li><a class="text-base">Pets</a></li>
+        <li><a class="text-base">My Reports</a></li>
+        <li><a class="text-base">My Pets</a></li>
         <li>
           <a class="justify-between text-base">
             Profile
