@@ -15,6 +15,8 @@ gem "devise", "~> 4.9.4"
 
 gem 'cloudinary', '~> 2.1', '>= 2.1.1'
 
+gem 'activestorage-cloudinary-service', '~> 0.2.3'
+
 gem 'carrierwave', '~> 3.0', '>= 3.0.7'
 
 # Use the Puma web server [https://github.com/puma/puma]

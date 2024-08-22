@@ -75,6 +75,16 @@
         <p class="text-gray-700">Last updated: <%= @report.updated_at.strftime("%B %d, %Y, %H:%M %p") %>
       <% end %>
     </div>
+
+    <!-- Images -->
+    <div class="mt-6">
+      <h3 class="text-lg font-semibold text-gray-800">Images:</h3>
+      <div class="grid grid-cols-3 gap-4 mt-4">
+        <% @report.images.each do |image| %>
+            <%= image_tag url_for(image), class: "w-64 h-64 object-cover rounded-lg shadow-lg" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 
   <div class="mt-6">

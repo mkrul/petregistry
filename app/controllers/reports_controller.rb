@@ -25,6 +25,9 @@ class ReportsController < ApplicationController
 
     respond_to do |format|
       if @report.save
+        report_params[:cloudinary_urls].split(', ').map do |url|
+          @report.images.attach(io: URI.open(url), filename: File.basename(URI.parse(url).path))
+        end
         format.html { redirect_to report_url(@report), notice: "Report was successfully created." }
         format.json { render :show, status: :created, location: @report }
       else
