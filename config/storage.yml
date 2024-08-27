@@ -4,6 +4,11 @@ test:
 
 cloudinary:
   service: Cloudinary
+  cloud_name: <%= Rails.application.credentials.dig(:cloudinary, :cloud_name) %>
+  api_key: <%= Rails.application.credentials.dig(:cloudinary, :api_key) %>
+  secret_key: <%= Rails.application.credentials.dig(:cloudinary, :secret_key) %>
+  upload_preset: "pr_unsigned"
+  folder: "petregistry"
 
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:

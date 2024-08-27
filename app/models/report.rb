@@ -19,5 +19,5 @@ class Report < ApplicationRecord
              :gender,
              with: -> { _1.presence }
 
-  has_many_attached :images
+  has_many_attached :images, dependent: :destroy
 end

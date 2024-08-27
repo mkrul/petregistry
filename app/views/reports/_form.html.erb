@@ -1,6 +1,6 @@
 <script src="https://upload-widget.cloudinary.com/latest/global/all.js" type="text/javascript"></script>
 <%= javascript_include_tag "common/cloudinary_widget" %>
-<%= javascript_include_tag "reports/dropdowns"%>
+<%= javascript_include_tag "reports/dropdowns" %>
 
 <%= form_with(model: report, local: true, multipart: true, class: "space-y-6", id: "lost-pet-report-form") do |form| %>
   <% if report.errors.any? %>
@@ -103,15 +103,12 @@
         <button id="cloudinary-widget" type="button" class="cloudinary-upload inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
           Upload Images
         </button>
-        <%= form.hidden_field :image, id: "image_field" %>
-        <div id="upload-progress" style="display:none;">
-          <progress id="progress-bar" value="0" max="100"></progress>
+        <%= form.hidden_field :image_urls, id: "cloudinary-images" %>
+        <div id="upload-progress" class="hidden">
+          <progress id="progress-bar" value="0" max="100" class="hidden"></progress>
         </div>
         <div id="image_preview"></div>
-        <%= form.hidden_field :images, id: 'cloudinary-images' %>
       </div>
-
-      <%= form.hidden_field :cloudinary_urls, id: "cloudinary-urls" %>
     </div>
   </div>
 

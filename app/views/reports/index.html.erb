@@ -7,7 +7,7 @@
       <div class="p-4 bg-white rounded-lg shadow flex">
         <div>
           <!-- Display the image -->
-          <% if report.images.any? &:attached? %>
+          <% if report.images.attached? %>
             <%= image_tag report.images.first.url(width: 200, crop: :fill), class: "mr-5" %>
           <% else %>
             No image available

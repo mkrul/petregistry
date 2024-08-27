@@ -1,20 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
   const cloudinaryWidget = cloudinary.createUploadWidget({
-    cloud_name: 'dtyadd1w5',
+    cloud_name: '<%= Rails.application.credentials.dig(:cloudinary, :cloud_name) %>',
     upload_preset: 'pr_unsigned',
     multiple: true,
     form: "#lost-pet-report-form",
     sources: ['local', 'url', 'camera'],
     folder: 'petregistry',
-    field_name: 'reports[images][]',
     showCompletedButton: true,
     clientAllowedFormats: ['png', 'jpg', 'jpeg'],
     thumbnails: '.cloudinary-thumbnails',
     showUploadMoreButton: true,
   }, (error, result) => {
     if (!error && result && result.event === 'success') {
+      const uploadedUrl = result.info.secure_url;
       const hiddenField = document.getElementById('cloudinary-images');
-      hiddenField.value += result.info.secure_url + ',';
+      hiddenField.value += uploadedUrl + ',';
     }
 
     if (error) {
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (result.event === "success") {
-      document.getElementById("image_field").value = result.info.secure_url;
+      document.getElementById("cloudinary-images").value = result.info.secure_url;
 
       const previewDiv = document.getElementById("image_preview");
       const imgWrapper = document.createElement("div");
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       removeButton.addEventListener("click", function() {
         previewDiv.removeChild(imgWrapper);
-        document.getElementById("image_field").value = "";  // Clear the hidden field
+        document.getElementById("cloudinary-images").value = "";  // Clear the hidden field
       });
 
       imgWrapper.appendChild(imgElement);
