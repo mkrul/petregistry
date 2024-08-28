@@ -45,6 +45,12 @@ class ReportsController < ApplicationController
   def update
     respond_to do |format|
       if @report.update(report_params)
+        if image_params[:image_urls].present?
+          image_urls = image_params[:image_urls]&.first&.split('🐶').reject(&:blank?)
+          image_urls.each do |url|
+            @report.images.attach(io: URI.open(url), filename: File.basename(URI.parse(url).path))
+          end
+        end
         format.html { redirect_to report_url(@report), notice: "Report was successfully updated." }
         format.json { render :show, status: :ok, location: @report }
       else
