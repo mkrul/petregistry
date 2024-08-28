@@ -13,16 +13,6 @@
     <!-- Title -->
     <h2 class="text-2xl font-semibold mb-4 text-blue-600"><%= @report.title %></h2>
 
-    <!-- Image -->
-    <% if @report.images.any? &:attached? %>
-      <% pry %>
-      <div class="mt-6 mb-4">
-        <% @report.images.each do |image| %>
-          <%= image_tag image.url, class: "w-64 h-64 object-cover rounded-lg shadow-lg" %>
-        <% end %>
-      </div>
-    <% end %>
-
     <!-- Name -->
     <% if @report.name.present? %>
       <div class="mb-4">
@@ -75,6 +65,18 @@
         <p class="text-gray-700">Last updated: <%= @report.updated_at.strftime("%B %d, %Y, %H:%M %p") %>
       <% end %>
     </div>
+
+    <!-- Images -->
+    <% if @report.images.attached? %>
+      <div class="mt-6">
+        <h3 class="text-lg font-semibold text-gray-800 w-100">Images:</h3>
+        <div class="flex flex-wrap mt-4">
+          <% @report.images.each do |image| %>
+            <img src="<%= image.url %>" class="object-cover rounded-lg shadow-lg mr-4 mb-4" width=200>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
 
   <div class="mt-6">
