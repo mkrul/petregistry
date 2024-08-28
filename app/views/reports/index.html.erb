@@ -8,7 +8,7 @@
         <div>
           <!-- Display the image -->
           <% if report.images.attached? %>
-            <%= image_tag report.images.first.url(width: 200, crop: :fill), class: "mr-5" %>
+            <img src="<%= report.images.first.url %>" class="mr-5" width=200 crop=fill>
           <% else %>
             No image available
           <% end %>

@@ -26,7 +26,7 @@ class ReportsController < ApplicationController
     respond_to do |format|
       if @report.save
         if image_params[:image_urls].present?
-          image_urls = image_params[:image_urls].split(', ').reject(&:blank?)
+          image_urls = image_params[:image_urls]&.first&.split('🐶').reject(&:blank?)
           image_urls.each do |url|
             @report.images.attach(io: URI.open(url), filename: File.basename(URI.parse(url).path))
           end
@@ -87,7 +87,7 @@ class ReportsController < ApplicationController
   end
 
   def image_params
-    params.fetch(:report, {}).permit(:image_urls)
+    params.fetch(:report, {}).permit(image_urls: [])
   end
 
 end

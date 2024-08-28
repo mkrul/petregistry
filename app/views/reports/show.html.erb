@@ -72,7 +72,7 @@
         <h3 class="text-lg font-semibold text-gray-800">Images:</h3>
         <div class="grid grid-cols-3 gap-4 mt-4">
           <% @report.images.each do |image| %>
-            <%= image_tag url_for(image), class: "w-64 h-64 object-cover rounded-lg shadow-lg" %>
+            <img src="<%= image.url %>" class="w-64 h-64 object-cover rounded-lg shadow-lg" width=200 crop=fill>
           <% end %>
         </div>
       </div>
