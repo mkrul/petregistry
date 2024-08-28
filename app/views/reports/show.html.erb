@@ -69,10 +69,10 @@
     <!-- Images -->
     <% if @report.images.attached? %>
       <div class="mt-6">
-        <h3 class="text-lg font-semibold text-gray-800">Images:</h3>
-        <div class="grid grid-cols-1 gap-4 mt-4">
+        <h3 class="text-lg font-semibold text-gray-800 w-100">Images:</h3>
+        <div class="flex flex-wrap mt-4">
           <% @report.images.each do |image| %>
-            <img src="<%= image.url %>" class="w-64 h-64 object-cover rounded-lg shadow-lg" width=200 crop=fill>
+            <img src="<%= image.url %>" class="object-cover rounded-lg shadow-lg mr-4 mb-4" width=200>
           <% end %>
         </div>
       </div>
