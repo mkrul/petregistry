@@ -1,34 +1,39 @@
 <div class="container mx-auto p-4">
-  <h1 class="text-3xl font-bold text-blue-600 mb-6">Lost Pets</h1>
+  <div class="mb-6 flex justify-between">
+    <h1 class="text-3xl font-bold text-blue-600">Lost Pets</h1>
+    <div>
+      <%= link_to "Report a lost pet", new_report_path, class: "inline-block px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600" %>
+    </div>
+  </div>
   <p class="text-green-500 mb-4"><%= notice %></p>
 
-  <div id="reports" class="space-y-4">
+  <div id="reports" class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
     <% reports.each do |report| %>
-      <div class="p-4 bg-white rounded-lg shadow flex">
-        <div>
+      <div class="p-4 bg-white rounded-lg shadow flex w-full lg:w-auto">
+        <div class="mr-4 flex-shrink-0">
           <!-- Display the image -->
           <% if report.images.attached? %>
-            <img src="<%= report.images.first.url %>" class="mr-5" width=200 crop=fill>
+            <img src="<%= report.images.first.url %>" width=150 crop=fill>
           <% else %>
             No image available
           <% end %>
         </div>
         <div>
           <!-- Display the title -->
-          <h2 class="text-xl font-semibold"><%= report.title %></h2>
+          <h2 class="text-xl font-semibold"><%= truncate(report.title, length: 30) %></h2>
 
           <p class="text-gray-500 text-sm mt-2">
-            Last updated: <%= report.updated_at.strftime("%B %d, %Y, %H:%M %p") %>
+            Updated on <%= report.updated_at.strftime("%B %d, %Y, %H:%M %p") %>
           </p>
 
           <!-- Display a truncated description -->
           <p class="text-gray-700 mt-2">
-            <%= truncate(report.description, length: 100) %>
+            <%= truncate(report.description, length: 30) %>
           </p>
 
           <!-- Show link -->
           <p class="mt-4">
-            <%= link_to "Read more", report, class: "text-blue-500 hover:underline" %>
+            <%= link_to "Read more", report, class: "text-blue-500 hover:underline", target: "_blank" %>
           </p>
         </div>
       </div>
