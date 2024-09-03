@@ -21,6 +21,8 @@ gem 'pagy', '~> 9.0.8'
 
 gem 'carrierwave', '~> 3.0', '>= 3.0.7'
 
+gem 'active_interaction', '~> 5.3'
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 
