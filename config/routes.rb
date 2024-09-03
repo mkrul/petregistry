@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :reports
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -9,4 +8,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root to: "home#index"
+
+  resources :reports do
+    get :index, on: :collection
+    get :search, on: :collection
+  end
 end
