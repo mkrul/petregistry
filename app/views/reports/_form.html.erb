@@ -16,7 +16,7 @@
 
 
   <div class="mt-05rem">
-    Please provide as as many details as possible and upload at least 1 to 3 photos of the animal. Photos must be under 5MB each.
+    Please provide as as many details as possible and upload at least 1 to 3 photos of the animal.
   </div>
   <div>
     If the animal's breeds are unknown, please provide your best guess based on visual characteristics and include a thorough description.
@@ -106,6 +106,12 @@
         <button id="cloudinary-widget" type="button" class="cloudinary-upload inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
           Upload Images
         </button>
+
+        <div class="text-sm text-gray-500 mt-3">
+          <span class="text-red-400">*</span>
+          Photos must be under <span class="text-red-400">5 MB</span> each.
+        </div>
+
         <%= form.hidden_field :image_urls, id: "cloudinary-images", multiple: true %>
         <div id="upload-progress" class="hidden">
           <progress id="progress-bar" value="0" max="100" class="hidden"></progress>
