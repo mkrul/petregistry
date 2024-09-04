@@ -4,3 +4,9 @@
 @import "./reports.css";
 @import "./pagy_nav.css";
 @import "./pagy.tailwind.css";
+
+/* MARGINS */
+
+.mt-05rem {
+  margin-top: 0.5rem !important;
+}
