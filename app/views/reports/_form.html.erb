@@ -14,16 +14,18 @@
     </div>
   <% end %>
 
+  <div class="mt-05rem">
+    Please provide as as many details as possible and upload at least 1 to 3 photos of the animal.
+  </div>
   <div>
-    Please provide as much detail as possible and upload a photo of the animal.
+    If the animal's breeds are unknown, please provide your best guess based on visual characteristics and include a thorough description.
   </div>
   <div class="text-sm text-gray-500 mb-3">
     <p>Fields marked with <span class="text-red-400">*</span> are required.</p>
   </div>
-
   <div>
     <div class="flex">
-      <%= form.label :title, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.label "Title:", class: "block text-sm font-medium text-gray-700" %>
       <span class="ml-1 text-red-400">*</span>
     </div>
     <%= form.text_field :title, required: true, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
@@ -31,7 +33,7 @@
 
   <div>
     <div class="flex">
-      <%= form.label :description, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.label "Description:", class: "block text-sm font-medium text-gray-700" %>
       <span class="ml-1 text-red-400">*</span>
     </div>
     <%= form.text_area :description, required: true, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
@@ -39,14 +41,14 @@
 
   <div>
     <div class="flex">
-      <%= form.label "Pet's name", class: "block text-sm font-medium text-gray-700" %>
+      <%= form.label "Pet's name, if known:", class: "block text-sm font-medium text-gray-700" %>
     </div>
     <%= form.text_field :name, required: false, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
   </div>
 
   <div>
     <div class="flex">
-      <%= form.label :gender, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.label "Sex:", class: "block text-sm font-medium text-gray-700" %>
       <span class="ml-1 text-red-400">*</span>
     </div>
     <%= form.select :gender, options_for_select(ReportsHelper::GENDER), { prompt: "Choose one" }, required: true, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
@@ -54,7 +56,7 @@
 
   <div>
     <div class="flex">
-      <%= form.label :species, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.label "Species:", class: "block text-sm font-medium text-gray-700" %>
       <span class="ml-1 text-red-400">*</span>
     </div>
     <%= form.select :species, options_for_select(ReportsHelper::SPECIES), { prompt: "Choose one" }, required: true, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
@@ -62,7 +64,7 @@
 
   <div>
     <div class="flex">
-      <%= form.label :breed_1, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.label "Breed 1:", class: "block text-sm font-medium text-gray-700" %>
       <span class="ml-1 text-red-400">*</span>
     </div>
     <%= form.select :breed_1, options_for_select(ReportsHelper::DOG_BREEDS), { prompt: "Choose one" }, id: "breed-1", required: true, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
@@ -70,14 +72,14 @@
 
   <div id="breed-2" class="hidden">
     <div class="flex">
-      <%= form.label :breed_2, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.label "Breed 2:", class: "block text-sm font-medium text-gray-700" %>
     </div>
     <%= form.select :breed_2, options_for_select(ReportsHelper::DOG_BREEDS), { prompt: "Choose one" }, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
   </div>
 
   <div>
     <div class="flex">
-      <%= form.label :color_1, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.label "Color 1:", class: "block text-sm font-medium text-gray-700" %>
       <span class="ml-1 text-red-400">*</span>
     </div>
     <%= form.select :color_1, options_for_select(ReportsHelper::COLORS), { prompt: "Choose one"}, id: "color-1", required: true, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
@@ -85,14 +87,14 @@
 
   <div id="color-2" class="hidden">
     <div class="flex">
-      <%= form.label :color_2, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.label "Color 2:", class: "block text-sm font-medium text-gray-700" %>
     </div>
     <%= form.select :color_2, options_for_select(ReportsHelper::COLORS), { prompt: "Choose one"}, id: "color-2", class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
   </div>
 
   <div id="color-3" class="hidden">
     <div class="flex">
-      <%= form.label :color_3, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.label "Color 3:", class: "block text-sm font-medium text-gray-700" %>
     </div>
     <%= form.select :color_3, options_for_select(ReportsHelper::COLORS), { prompt: "Choose one"}, class: "mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
   </div>
