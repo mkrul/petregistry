@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @reports = Report.all
+    @pagy, @reports = pagy(Report.all, items: 20)
   end
 end

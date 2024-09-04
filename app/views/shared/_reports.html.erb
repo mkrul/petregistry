@@ -5,30 +5,39 @@
       <%= link_to "Report a lost pet", new_report_path, class: "inline-block px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600" %>
     </div>
   </div>
+
+  <!-- Pagy navigation -->
+  <div class="mt-6">
+    <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+  </div>
+
   <p class="text-green-500 mb-4"><%= notice %></p>
 
   <div id="reports" class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
     <% reports.each do |report| %>
-      <div class="p-4 bg-white rounded-lg shadow flex w-full lg:w-auto">
-        <div class="mr-4 flex-shrink-0">
+      <div class="p-4 bg-white rounded-lg shadow flex w-full lg:w-auto flex-col sm:flex-col md:flex-col lg:flex-col xl:flex-row">
+        <div class="flex-shrink-0">
           <!-- Display the image -->
           <% if report.images.attached? %>
-            <img src="<%= report.images.first.url %>" width=150 crop=fill>
+            <img src="<%= report.images.first.url %>" crop=fill class="object-cover w-[150px] h-[150px] xs:mb-3 sm:mb-3 md:mb-3 lg:mb-3 xl:mb-0 mr-4 report-image">
           <% else %>
             No image available
           <% end %>
         </div>
-        <div>
+        <div class="report-info">
           <!-- Display the title -->
           <h2 class="text-xl font-semibold"><%= truncate(report.title, length: 30) %></h2>
 
           <p class="text-gray-500 text-sm mt-2">
-            Updated on <%= report.updated_at.strftime("%B %d, %Y, %H:%M %p") %>
+            Last updated:
+            <div>
+              <%= report.updated_at.strftime("%m/%d/%Y, %H:%M %p") %>
+            </div>
           </p>
 
           <!-- Display a truncated description -->
           <p class="text-gray-700 mt-2">
-            <%= truncate(report.description, length: 30) %>
+            <%= truncate(report.description, length: 35) %>
           </p>
 
           <!-- Show link -->
@@ -38,6 +47,11 @@
         </div>
       </div>
     <% end %>
+  </div>
+
+  <!-- Pagy navigation -->
+  <div class="mt-6">
+    <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
   </div>
 
   <div class="mt-6">

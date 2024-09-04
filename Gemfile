@@ -15,9 +15,18 @@ gem "devise", "~> 4.9.4"
 
 gem 'cloudinary', '~> 2.1', '>= 2.1.1'
 
+gem 'searchkick', '~> 5.3', '>= 5.3.1'
+
+gem 'opensearch-ruby', '~> 3.4'
+
 gem 'activestorage-cloudinary-service', '~> 0.2.3'
 
+gem 'pagy', '~> 9.0.8'
+
+
 gem 'carrierwave', '~> 3.0', '>= 3.0.7'
+
+gem 'active_interaction', '~> 5.3'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"

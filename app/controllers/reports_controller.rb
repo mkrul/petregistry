@@ -3,23 +3,19 @@ class ReportsController < ApplicationController
 
   # GET /reports or /reports.json
   def index
-    @reports = Report.all
+    @pagy, @reports = pagy(Report.all, items: 20)
   end
 
-  # GET /reports/1 or /reports/1.json
   def show
   end
 
-  # GET /reports/new
   def new
     @report = Report.new
   end
 
-  # GET /reports/1/edit
   def edit
   end
 
-  # POST /reports or /reports.json
   def create
     @report = Report.new(report_params)
 
@@ -41,7 +37,6 @@ class ReportsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /reports/1 or /reports/1.json
   def update
     respond_to do |format|
       if @report.update(report_params)
@@ -60,13 +55,22 @@ class ReportsController < ApplicationController
     end
   end
 
-  # DELETE /reports/1 or /reports/1.json
   def destroy
     @report.destroy!
 
     respond_to do |format|
       format.html { redirect_to reports_url, notice: "Report was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def search
+    outcome = Reports::Search.run(search_params)
+    if outcome.valid?
+      @pagy, @reports = pagy(outcome.result, items: 20)
+      render :index
+    else
+      redirect_to reports_url, alert: outcome.errors.full_messages.join(', ')
     end
   end
 
@@ -94,6 +98,10 @@ class ReportsController < ApplicationController
 
   def image_params
     params.fetch(:report, {}).permit(image_urls: [])
+  end
+
+  def search_params
+    params.permit(:query)
   end
 
 end
