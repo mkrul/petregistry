@@ -1,5 +1,9 @@
 <script type="text/javascript">
   document.addEventListener("DOMContentLoaded", function () {
+    const maxImages = 3;
+    const maxFileSize = 5 * 1024 * 1024; // 5MB
+    let currentImageCount = 0;
+
     const cloudinaryWidget = cloudinary.createUploadWidget({
       cloud_name: '<%= Rails.application.credentials.dig(:cloudinary, :cloud_name) %>',
       upload_preset: 'pr_unsigned',
@@ -9,10 +13,18 @@
       folder: 'petregistry',
       showCompletedButton: true,
       clientAllowedFormats: ['png', 'jpg', 'jpeg'],
+      maxFileSize: maxFileSize,
       thumbnails: '.cloudinary-thumbnails',
       showUploadMoreButton: true,
     }, (error, result) => {
       if (!error && result && result.event === 'success') {
+
+        if (currentImageCount >= maxImages) {
+          alert(`You can only upload a maximum of ${maxImages} images.`);
+          return;
+        }
+
+        currentImageCount += 1;
         let photoUrls = [];
         const uploadedUrl = result.info.secure_url;
         const hiddenField = document.getElementById('cloudinary-images');
@@ -51,6 +63,8 @@
 
         removeButton.addEventListener("click", function() {
           previewDiv.removeChild(imgWrapper);
+          currentImageCount -= 1;
+
           // Remove the URL from the hidden field
           const urls = hiddenField.value.split('🐶').filter(url => url !== result.info.secure_url);
           hiddenField.value = urls.join('🐶');
@@ -80,7 +94,11 @@
     });
 
     document.getElementById("cloudinary-widget").addEventListener("click", function () {
-      cloudinaryWidget.open();
+      if (currentImageCount < maxImages) {
+        cloudinaryWidget.open();
+      } else {
+        alert(`You can only upload a maximum of ${maxImages} images.`);
+      }
     }, false);
   });
 </script>
