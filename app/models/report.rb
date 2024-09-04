@@ -1,4 +1,7 @@
 class Report < ApplicationRecord
+  searchkick
+  Report.reindex
+
   validates :title, presence: true
   validates :description, presence: true
   validates :status, presence: true, inclusion: { in: %w[active archived] }
