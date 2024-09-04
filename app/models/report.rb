@@ -2,6 +2,8 @@ class Report < ApplicationRecord
   searchkick
   Report.reindex
 
+  has_many_attached :images, dependent: :destroy
+
   validates :title, presence: true
   validates :description, presence: true
   validates :status, presence: true, inclusion: { in: %w[active archived] }
@@ -22,5 +24,21 @@ class Report < ApplicationRecord
              :gender,
              with: -> { _1.presence }
 
-  has_many_attached :images, dependent: :destroy
+  validate :image_count_within_limit
+  validate :image_size_within_limit
+
+  private
+
+  def image_count_within_limit
+    if images.attached? && images.count > 3
+      errors.add(:images, "cannot exceed 3")
+    end
+  end
+
+  def image_size_within_limit
+    if images.any? { |image| image.byte_size > 5.megabytes }
+      errors.add(:images, "cannot exceed 5MB")
+    end
+  end
+
 end
