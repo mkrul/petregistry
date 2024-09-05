@@ -1,0 +1,22 @@
+
+  // get count from locals
+  let targetId = <%= target_id %>;
+  // loop the number of times is in @image_count
+  console.log("Hello from remove button");
+  console.log(targetId);
+  for (let i = 0; i < currentImageCount; i++) {
+    let img = document.getElementById(`${targetId}`);
+    let removeButton = document.createElement("button");
+    removeButton.innerText = "Remove";
+    removeButton.style.position = "absolute";
+    removeButton.style.top = "0";
+    removeButton.style.right = "0";
+    removeButton.style.backgroundColor = "red";
+    removeButton.style.color = "white";
+    removeButton.style.border = "none";
+    removeButton.style.cursor = "pointer";
+    removeButton.style.padding = "0 4px";
+    removeButton.style.fontSize = "12px";
+    removeButton.style.borderRadius = "4px";
+  };
+
