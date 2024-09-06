@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "jsx": "react",
+  }
+}
+
+
+// {
+//   "compilerOptions": {
+//     "target": "ESNext",         // Target modern JavaScript for ESNext features.
+//     "module": "ESNext",         // Use ESNext module system.
+//     "jsx": "react-jsx",         // Use the JSX transformation for React (React 17+).
+//     "strict": true,             // Enable strict type-checking options.
+//     "esModuleInterop": true,    // Enable compatibility with CommonJS modules.
+//     "allowSyntheticDefaultImports": true, // Allow default imports from modules with no default export.
+//     "skipLibCheck": true,       // Skip checking types in libraries for performance.
+//     "forceConsistentCasingInFileNames": true // Enforce case sensitivity in imports.
+//   },
+//   "include": [
+//     "app/javascript/**/*", // Include your React/JavaScript files.
+//     "app/frontend/**/*"     // Include any other front-end TypeScript files.
+//   ],
+//   "exclude": [
+//     "node_modules",         // Exclude node_modules folder to speed up the build process.
+//     "tmp",                  // Exclude temporary files from Rails.
+//     "public"                // Exclude the public folder.
+//   ]
+// }

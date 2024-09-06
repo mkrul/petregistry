@@ -1,4 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 // Entry point for the build script in your package.json
-import "@hotwired/turbo-rails"
-import "./controllers"
-import "./components/app"
+require("@hotwired/turbo-rails");
+require("./controllers");
+require("./components/app");

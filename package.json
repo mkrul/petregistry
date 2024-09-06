@@ -24,10 +24,13 @@
     "vite-plugin-stimulus-hmr": "^3.0.0"
   },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets"
+    "build": "esbuild app/javascript/entrypoints/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
+    "check-types": "tsc --project tsconfig.json --noEmit --watch --preserveWatchOutput"
   },
   "dependencies": {
     "@hotwired/turbo-rails": "^8.0.5",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   }
